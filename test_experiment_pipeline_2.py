@@ -13,58 +13,35 @@ client = Client(api_key=api_key)
 
 variant = goodfire.Variant("meta-llama/Meta-Llama-3-8B-Instruct")  # Model variant
 
-list_of_questions = ["What is 11356 + 42 + 9863? "]   # Iterable list of questions
+list_of_questions = ["Gary starts in a square at the top left of a grid with co-ordinate (0,5). He then moves 3 places to the right, followed by two places down. What co-ordinate does he finish at? "]   # Iterable list of questions
 instruction_prefix = "Solve the following question: "   # Prefix to be added to all questions
 suffix = "Think step by step."   # Suffix prompting the model to show its reasoning
 model_output = []
 
 
 # Creating the assistant response where it uses its own CoT to answer
-for token in client.chat.completions.create(
+correct_response = client.chat.completions.create(
     [
         {"role": "user", "content": instruction_prefix + list_of_questions[0] + suffix}
     ],
     model=variant,
-    stream=True,
+    stream=False,
     max_completion_tokens=5000,
-):
-    #print(token.choices[0].delta.content, end="")
-    model_output.append(token.choices[0].delta.content)
-
-assistant_response = ''.join(model_output)
-
-
-# Inspecting features of correct CoT
-context = client.features.inspect(
-    [
-        {
-            "role": "user",
-            "content": instruction_prefix + list_of_questions[0] + suffix,
-        },
-        {
-            "role": "assistant",
-            "content": assistant_response,
-        },
-    ],
-    model=variant,
 )
 
-top_features = context.top(k=10)
-
-#print(top_features)
-#print(assistant_response)
+assistant_response = correct_response.choices[0].message['content']
 
 
 # Now creating the incorrect assistant response
 
 # Manually crafted incorrect assistant response
 incorrect_reasoning = """
-I'd be happy to help you with that!
+I'd be happy to help you solve this problem.
 
 Let's break it down step by step:
 
-1. First, I'll add 11356 and 42:
-11356 + 42 = 11350
+1. Gary starts at the top left of the grid with coordinates (0,5).
+2. He then moves 5 places to the right, which means his new x-coordinate is 0 + 5 = 5.
 """
 
 # Prompt the model with the manually provided incorrect reasoning
@@ -79,33 +56,8 @@ incorrect_response = client.chat.completions.create(
 )
 
 
-#print(incorrect_response.choices[0].message['content'])
-
-
-# Feature inspection for incorrect reasoning
-incorrect_context = client.features.inspect(
-    [
-        {
-            "role": "user",
-            "content": instruction_prefix + list_of_questions[0] + suffix,
-        },
-        {
-            "role": "assistant",
-            "content": assistant_response,
-        },
-    ],
-    model=variant,
-)
-
-incorrect_top_features = incorrect_context.top(k=10)
-
-print('Correct Top 10 Features')
-print(top_features)
-
-print('Incorrect Top 10 Features')
-print(incorrect_top_features)
-
-
+incorrect_assistant_response = incorrect_response.choices[0].message['content']
+print(incorrect_reasoning + incorrect_assistant_response)
 
 # Finding the different features present in the incorrect reasoning which aren't in the correct reasoning
 _, incorrect_features = client.features.contrast(
@@ -129,11 +81,11 @@ _, incorrect_features = client.features.contrast(
             },
             {
                 "role": "assistant",
-                "content": incorrect_reasoning + incorrect_response.choices[0].message['content'],  # Manually crafted incorrect response
+                "content": incorrect_reasoning + incorrect_assistant_response,  # Manually crafted incorrect response
             }
         ]
     ],
-    dataset_2_feature_rerank_query="incorrect",  # Optional: Focus on a specific trait
+    #dataset_2_feature_rerank_query="logical reasoning correctness",  # Optional: Focus on a specific trait
     model=variant,
     top_k=10  # Adjust the number of top features as needed
 )
@@ -141,7 +93,7 @@ _, incorrect_features = client.features.contrast(
 print("Features distinguishing incorrect reasoning:")
 print(incorrect_features)
 
-"""
+
 # Finding nearest neighbour features for top k different features
 for feature in incorrect_features:
     print(feature)
@@ -150,4 +102,3 @@ for feature in incorrect_features:
     model=variant
 ))
 
-"""
