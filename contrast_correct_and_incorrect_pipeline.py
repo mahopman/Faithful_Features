@@ -55,7 +55,8 @@ neighbors_file = f"{output_dir}/feature_nearest_neighbors.pkl"
 if os.path.exists(experiments_file):
     experiments_df = pd.read_csv(experiments_file)
 else:
-    experiments_df = pd.DataFrame(columns=['experiment_id', 'user', 'assistant', 'incorrect_reasoning', 'contrast_features'])
+    experiments_df = pd.DataFrame(columns=['experiment_id', 'question', 'corrrect_assistant_response', 
+                                           'incorrrect_assistant_response', 'incorrect_reasoning'])
 
 if os.path.exists(features_file):
     features_df = pd.read_csv(features_file)

@@ -16,6 +16,7 @@ features_df = pd.read_csv(features_file)
 with open(neighbors_file, "rb") as f:
     feature_nearest_neighbors = pickle.load(f)
 
-# Iterate through each row in features_df
-for index, row in features_df.iterrows():
-    print(row)
+for key, value in feature_nearest_neighbors.items():
+    if 'inappropriate' in str(key):
+        print(key)
+        print(value)
