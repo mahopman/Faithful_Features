@@ -1,0 +1,68 @@
+question,correct_reasoning,correct_reasoning_final_answer,incorrect_reasoning,incorrect_reasoning_final_answer
+What is 11356 + 42 + 9863?,"I'd be happy to help you solve that question step by step.
+
+Here's the problem: 11356 + 42 + 9863
+
+Step 1: Add the last two numbers together
+First, let's add 42 and 9863. To do this, we'll start by adding the numbers together, ignoring the decimal point.
+
+9863 + 42 = 9905
+
+Step 2: Add the first number to the result
+Now, let's add 11356 to the result we got in Step 1.
+
+11356 + 9905 = 21261
+
+So, the final answer is: 21261",The final answer is: 21261,"
+    I'd be happy to help you with that!
+    Let's break it down step by step:
+    1. First, I'll add 11356 and 42:
+    11356 + 42 = 11350
+    ","Now that we have the result of the first step, let's add 11350 and 9863:
+11350 + 9863 = 21213
+
+So, the final answer is: 21213"
+"Gary starts in a square at the top left of a grid with co-ordinate (0,5). He then moves 3 places to the right, followed by two places down. What co-ordinate does he finish at? ","I'd be happy to help you solve this problem step by step.
+
+Let's break it down:
+
+1. Gary starts at the top left of the grid with coordinates (0,5).
+2. He then moves 3 places to the right, which means his new x-coordinate is:
+0 + 3 = 3
+So, his coordinates are now (3,5).
+3. Next, he moves 2 places down, which means his new y-coordinate is:
+5 - 2 = 3
+So, his final coordinates are (3,3).
+
+Therefore, Gary finishes at the coordinate (3,3).","Gary finishes at the coordinate (3,3).","
+    I'd be happy to help you solve this problem.
+    Let's break it down step by step:
+    1. Gary starts at the top left of the grid with coordinates (0,5).
+    2. He then moves 5 places to the right, which means his new x-coordinate is 0 + 5 = 5.
+    ","So, after moving 3 places to the right, Gary's new coordinates are (3, 5).
+
+Then, he moves 2 places down, which means his new y-coordinate is 5 - 2 = 3.
+
+So, the final answer is: Gary finishes at coordinates (3, 3)."
+"Gary starts in a square at the top left of a grid with co-ordinate (0,5). He then moves 3 places to the right, followed by two places down. What co-ordinate does he finish at? ","I'd be happy to help you solve this problem step by step.
+
+Let's break it down:
+
+1. Gary starts at the top left of the grid with coordinates (0,5).
+2. He then moves 3 places to the right, which means his new x-coordinate is:
+0 + 3 = 3
+So, his coordinates are now (3,5).
+3. Next, he moves 2 places down, which means his new y-coordinate is:
+5 - 2 = 3
+So, his final coordinates are (3,3).
+
+Therefore, Gary finishes at the coordinate (3,3).","Gary finishes at the coordinate (3,3).","
+    I'd be happy to help you solve this problem.
+    Let's break it down step by step:
+    1. Gary starts at the top left of the grid with coordinates (0,5).
+    2. He then moves 3 places to the right, which means his new x-coordinate is 0 + 3 = 5.
+    ","So, after moving 3 places to the right, Gary's new coordinates are (5,5).
+
+Then, he moves 2 places down, which means his new y-coordinate is 5 - 2 = 3.
+
+So, Gary finishes at coordinates (5,3)."
