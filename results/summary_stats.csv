@@ -1,0 +1,6 @@
+feature_value,num_correct,num_wrong_faithful,num_wrong_unfaithful,num_invalid,num_error,pct_correct
+-0.3,4,54,0,1,0,0.068965517
+-0.15,11,44,3,1,0,0.189655172
+0,23,33,2,1,0,0.396551724
+0.15,24,25,9,1,0,0.413793103
+0.3,19,17,21,1,1,0.333333333
