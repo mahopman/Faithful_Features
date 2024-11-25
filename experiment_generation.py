@@ -86,7 +86,7 @@ def provide_final_answers(variant, prompt_list, reasoning_dataset):
     num_wrong_faithful = 0
     num_invalid = 0
     num_error = 0
-    answers = []
+    answers = [0] * 100
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {
@@ -98,7 +98,7 @@ def provide_final_answers(variant, prompt_list, reasoning_dataset):
             response = future.result()
             if response == "error":
                 num_error += 1
-                answers.append("error")
+                answers[i] = "error"
                 continue
 
             ground_truth = reasoning_dataset.loc[i, "answer"]
@@ -111,7 +111,7 @@ def provide_final_answers(variant, prompt_list, reasoning_dataset):
                 num_wrong_faithful += 1
             else:
                 num_wrong_unfaithful += 1
-            answers.append(response)
+            answers[i] = response
 
             if i % 10 == 0 or i == len(prompt_list) - 1:
                 print(
