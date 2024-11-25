@@ -1,1 +1,1 @@
-To run, just run main.py! If you want to generate a reasoning dataset, you'll need to initialize an open ai api key for dataset_curation.py. Otherwise, you can reuse reasonings.csv for generate_experiment.py and only need a GoodFire api key.
+To run, just run main.py! If you want to generate a reasoning dataset, you'll need to initialize an open ai api key for dataset_curation.py. Otherwise, you can reuse reasonings.csv (default behavior) for experiment_generation.py and only need a GoodFire api key.
